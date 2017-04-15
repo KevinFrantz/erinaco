@@ -1,11 +1,15 @@
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM);
 
+def pinIt(pin,art,value,name):
+	print("Pin {0:2}; Art {1:3};  Value: {2}; Name: {3}; ".format(pin,art,value,name));
 def checkInput(pin,name):
 	GPIO.setup(pin, GPIO.IN);
-	print("Pin {0}; Value {1}; {2}; ".format(pin,GPIO.input(pin),name));
+	pinIt(pin,"IN",GPIO.input(pin),name);
 def output(pin,name):
-	print("Pin {0}; Name {1};".format(pin,name));
+	GPIO.setup(pin, GPIO.OUT)
+	GPIO.output(pin, 0)
+	pinIt(pin,'OUT','0',name);
 print('--- Allgemeine Sensoren ---')
 checkInput(19,"PIR")
 checkInput(26,"DHT11")
@@ -22,9 +26,9 @@ checkInput(27,"UA-2-IN")
 output(5,"UA-3-TRIGGER")
 checkInput(17,"UA-3-IN")
 print('--- Motorenbelegung ---');
-output(18,"A-1A") #Grau
-output(23,"A-1B") #Weiss
-output(24,"B-1A") #Blau
-output(25,"B-1B") #Lila
+output(23,"A-1A") #Grau
+output(18,"A-1B") #Weiss
+output(25,"B-1A") #Blau
+output(24,"B-1B") #Lila
 GPIO.cleanup();
 
