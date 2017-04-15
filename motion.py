@@ -7,12 +7,12 @@ Diese Klasse stellt alle Motion-Funktionen fuer den Erinaco Roboter zur Verfuegu
 """
 class Motion(object):
         def __init__(self):
-                self.motorLeft=MOTOR(23,18,1) #Initialisierung des linken Motors
-                self.motorRight=MOTOR(24,25,0) #Initialisierung des rechten Motors
+                self.motorRight=MOTOR(23,18,1) #Initialisierung des linken Motors
+                self.motorLeft=MOTOR(24,25,0) #Initialisierung des rechten Motors
         def turnLeft(self):
                 self.motorRight.forward()
                 self.motorLeft.backward()
-        def turnRigh(self):
+        def turnRight(self):
                 self.motorRight.backward()
                 self.motorLeft.forward()
         def forward(self):
