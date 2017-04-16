@@ -62,8 +62,8 @@ class Autopilot(CORE,THREAD):
 	def testForward(self):
 		ultraschallMitte=self.ultraschallMitte.getValue();
 		if(ultraschallMitte<=self.ultraschalminimum 
-			or self.ultraschallRechts.getValue()<=self.ultraschalminimum 
-			or self.ultraschallLinks.getValue()<=self.ultraschalminimum 
+			#or self.ultraschallRechts.getValue()<=self.ultraschalminimum 
+			#or self.ultraschallLinks.getValue()<=self.ultraschalminimum 
 			or self.infarotMitteLinks.getValue() 
 			or self.infarotMitteRechts.getValue()):
 			self.stop();					

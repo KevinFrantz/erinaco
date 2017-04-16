@@ -20,24 +20,32 @@ def help():
 	print("Halbautomatisch: w")
 	print("Manuell:         e")
 def autopilot():
-	core=AUTOPILOT()
-	#core.start();
-	while True:	
-		try:	
-			core.forward();
-		except ForwardMoveException:
-			if randint(0,1):			
-				core.backward();
-			else:
-				if randint(0,1):
-					core.turnLeft();				
+	try:
+		core=AUTOPILOT()
+		#core.start();
+		while True:			
+			try:	
+				core.printValues();			
+				if core.moveStatus!=1:			
+					core.forward();
 				else:
-					core.turnRight();
-		except LeftMoveException:
-			core.turnLeft();
-		except RightMoveException:
-			core.turnRight();
-		sleep(0.5);
+					core.statusTest();
+			except ForwardMoveException:
+				if randint(0,1):			
+					core.backward();
+				else:
+					if randint(0,1):
+						core.turnLeft();				
+					else:
+						core.turnRight();
+			except LeftMoveException:
+				core.turnLeft();
+			except RightMoveException:
+				core.turnRight();
+			sleep(1);
+	except KeyboardInterrupt:
+		print("Verlasse Autopilot...")
+		#core=CORE();
 def doIt(order):
 	switcher = {
         	'w': lambda: core.forward(),
