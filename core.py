@@ -11,5 +11,7 @@ class Core(MOTION,VERO):
 		GPIO.setmode(GPIO.BCM);
 		MOTION.__init__(self);
 		VERO.__init__(self);
+	def routine(self): #Routine welche vor jedem Arbeitsschritt ausgefuehrt werden soll
+		self.setSensorValues();
 	def __del__(self):
 		GPIO.cleanup();

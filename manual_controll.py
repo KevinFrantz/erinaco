@@ -21,31 +21,34 @@ def help():
 	print("Manuell:         e")
 def autopilot():
 	try:
-		core=AUTOPILOT()
-		#core.start();
-		while True:			
-			try:	
-				core.printValues();			
-				if core.moveStatus!=1:			
-					core.forward();
-				else:
-					core.statusTest();
-			except ForwardMoveException:
-				if randint(0,1):			
-					core.backward();
-				else:
-					if randint(0,1):
-						core.turnLeft();				
+		autopilot=AUTOPILOT()
+		while True:						
+			try:			
+				try:	
+					autopilot.setSensorValues();
+					autopilot.printValues();
+					print("Richtung: {0}".format(autopilot.moveStatus));			
+					if autopilot.moveStatus!=1:			
+						autopilot.forward();
 					else:
-						core.turnRight();
-			except LeftMoveException:
-				core.turnLeft();
-			except RightMoveException:
-				core.turnRight();
-			sleep(1);
+						autopilot.statusTest();
+				except ForwardMoveException:				
+					if randint(0,1):			
+						autopilot.backward();
+					else:
+						if randint(0,1):
+							autopilot.turnLeft();				
+						else:
+							autopilot.turnRight();
+				except LeftMoveException:
+					core.turnLeft();
+				except RightMoveException:
+					core.turnRight();
+			except MoveException:
+				autopilot.stop();
+			sleep(0.5);
 	except KeyboardInterrupt:
 		print("Verlasse Autopilot...")
-		#core=CORE();
 def doIt(order):
 	switcher = {
         	'w': lambda: core.forward(),
@@ -62,11 +65,10 @@ def doIt(order):
 print("Herzlich Willkommen im manuellen Controll-Interface!\n") 
 try:	
 	while True:
+		core.setSensorValues()
 		input=getch.getch();
 		print("Erinaco>>{0}".format(input))
 		doIt(input);
-except MoveException:
-	print("Move Exception...")
 except KeyboardInterrupt:
 	print("Verlasse Erinaco...")
 	core.__del__();
