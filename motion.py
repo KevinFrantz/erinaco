@@ -10,6 +10,7 @@ class Motion(object):
 		self.motorRight=MOTOR(23,18,1) #Initialisierung des linken Motors
 		self.motorLeft=MOTOR(24,25,0) #Initialisierung des rechten Motors
 		self.FULLTURNTIME=4.5; #Dauer welche fuer eine 360 Grad wendebenoetigt wird in Sekunden        
+		self.SEKPERMETER=6.9;
 	def turnLeft(self):
 		self.motorRight.forward()
 		self.motorLeft.backward()
@@ -25,9 +26,18 @@ class Motion(object):
 	def stop(self):
 		self.motorRight.stop()
 		self.motorLeft.stop()
+	def runCm(self,cm):
+		if cm<0:
+			self.backward();
+			cm=cm*-1;		
+		else:
+			self.forward();
+		sleep((self.SEKPERMETER/100)*cm);
+		self.stop();
 	def turnDegree(self,degree):
 		if degree<0:
-			self.turnLeft();		
+			self.turnLeft();
+			degree=degree*-1;		
 		else:
 			self.turnRight();
 		sleep((self.FULLTURNTIME/360)*degree);
