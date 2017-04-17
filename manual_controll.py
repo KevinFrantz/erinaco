@@ -49,6 +49,10 @@ def autopilot():
 			sleep(0.5);
 	except KeyboardInterrupt:
 		print("Verlasse Autopilot...")
+def turnDegree():
+	#degree = input();
+	core.turnDegree(90);
+	return;
 def doIt(order):
 	switcher = {
         	'w': lambda: core.forward(),
@@ -59,6 +63,7 @@ def doIt(order):
 		'i': lambda: core.printValues(),
 		'h': lambda: help(),
 		'q': lambda: autopilot(),
+		'x': lambda: turnDegree(),
 	}
 	func = switcher.get(order, lambda: print("Der gewuenschte Befehl steht nicht zur Verfuegung"))
 	return func();

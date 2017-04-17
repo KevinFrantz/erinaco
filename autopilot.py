@@ -78,7 +78,6 @@ class Autopilot(CORE):
 		self.statusTest();	
 		CORE.turnRight(self);
 	def forward(self):
-		
 		self.moveStatus=1;
 		self.statusTest();		
 		CORE.forward(self);
