@@ -60,14 +60,14 @@ def doIt(order):
 		'h': lambda: help(),
 		'q': lambda: autopilot(),
 		'x': lambda: core.turnDegree(int(input("Grad:"))),
-		'w': lambda: core.runCm(int(input("cm:"))),
+		'r': lambda: core.runCm(int(input("cm:"))),
 	}
 	func = switcher.get(order, lambda: print("Der gewuenschte Befehl steht nicht zur Verfuegung"))
 	return func();
 print("Herzlich Willkommen im manuellen Controll-Interface!\n") 
 try:	
 	while True:
-		core.setSensorValues()
+		#core.setSensorValues()
 		modus=getch.getch();
 		print("Erinaco>>{0}".format(modus))		
 		doIt(modus);
